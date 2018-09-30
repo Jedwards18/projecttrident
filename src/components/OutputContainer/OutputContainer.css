@@ -1,0 +1,62 @@
+#output-container {
+    margin-top: 30px;
+    width: 90%;
+    margin: auto;
+    border: solid 2px #1B73A7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #98C1D8;
+}
+
+#output-container-header {
+    font-size: 23px;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 40px;
+    background-color: #1B73A7;
+    color: white;
+    text-align: center;
+    line-height: 1.6;
+}
+
+#positivity-analysis-results-header,
+#personality-traits-results-header,
+#positivity-result-header,
+#negativity-result-header,
+#word-cloud-header,
+#data-table-header {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background-color: #1B73A7;
+    color: white;
+}
+
+#personality-traits-results-grid, 
+#positivity-analysis-results-grid,
+#positivity-result-grid,
+#negativity-result-grid,
+#word-cloud-grid,
+#data-table-grid {
+    border: 2px solid #1B73A7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: white;
+}
+
+#positivity-result-grid {
+    margin-left: 15px;
+}
+
+#negativity-result-grid {
+    margin-right: 15px;
+}
+
+#personality-traits-results,
+#positivity-result,
+#negativity-result,
+#word-cloud-data,
+#data-table {
+    text-align: center;
+    padding: 15px;
+}

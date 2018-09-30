@@ -1,0 +1,19 @@
+.ui.three.cards {
+    width: 80%;
+    margin: auto;
+}
+
+.ui.card>image:not(.ui)>img,
+.ui.cards>.card>.image:not(.ui)>img {
+    height: 250px;
+}
+
+.header {
+    text-align: center;
+}
+
+
+.ui.card>.content, 
+.ui.cards>.card>.content  {
+    background-color: #98C1D8;
+}

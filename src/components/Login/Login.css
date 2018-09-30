@@ -1,0 +1,11 @@
+.login-form {
+    width: 50%;
+    margin: auto;
+    border: solid 2px black;
+}
+
+.login-form-header {
+    background-color: black;
+    color: white;
+}
+
