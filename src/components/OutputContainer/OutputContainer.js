@@ -8,7 +8,12 @@ const OutputContainer = () => (
         <div className="row">
             <div className="column">
                 <div id="personality-traits-results-grid">
-                    <div id="personality-traits-results-header">Personality Traits (ADD MORE INFO BUTTON)</div>
+                    <div id="personality-traits-results-header">
+                    Personality Traits
+                    <div className="mini ui icon button" data-tooltip="More Info" data-position="right center">
+                        <i className="info icon link"></i>
+                    </div>
+                    </div>
                     <div id="personality-traits-results">
                         <p>DISPLAY RESULTS HERE</p>
                     </div>
