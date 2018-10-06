@@ -1,5 +1,5 @@
-.new-account-form {
-    width: 75%;
+#new-account-form {
+    width: 80%;
     margin: auto;
     border: solid 2px #1B73A7;
     border-top-left-radius: 5px;
@@ -7,7 +7,7 @@
     background-color: #98C1D8;
 }
 
-.new-account-form-header {
+#new-account-form-header {
     font-size: 16px;
     background-color: #1B73A7;
     color: white;
@@ -17,7 +17,7 @@
 .field {
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 20px;
+    padding-top: 5px;
 }
 .ui.button {
     margin-left: 20px;

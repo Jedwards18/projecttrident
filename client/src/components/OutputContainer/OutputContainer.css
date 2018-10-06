@@ -19,10 +19,10 @@
     line-height: 1.6;
 }
 
-#positivity-analysis-results-header,
+#polarity-analysis-results-header,
 #personality-traits-results-header,
-#positivity-result-header,
-#negativity-result-header,
+#polarity-result-header,
+#polarity-confidence-result-header,
 #word-cloud-header,
 #data-table-header {
     text-align: center;
@@ -33,9 +33,9 @@
 }
 
 #personality-traits-results-grid, 
-#positivity-analysis-results-grid,
-#positivity-result-grid,
-#negativity-result-grid,
+#polarity-analysis-results-grid,
+#polarity-result-grid,
+#polarity-confidence-result-grid,
 #word-cloud-grid,
 #data-table-grid {
     border: 2px solid #1B73A7;
@@ -44,17 +44,17 @@
     background-color: white;
 }
 
-#positivity-result-grid {
+#polarity-result-grid {
     margin-left: 15px;
 }
 
-#negativity-result-grid {
+#polarity-confidence-result-grid {
     margin-right: 15px;
 }
 
 #personality-traits-results,
-#positivity-result,
-#negativity-result,
+#polarity-result,
+#polarity-confidence-result,
 #word-cloud-data,
 #data-table {
     text-align: center;
