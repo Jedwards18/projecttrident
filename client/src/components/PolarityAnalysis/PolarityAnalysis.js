@@ -1,9 +1,7 @@
 import React from "react";
 
-const PolarityAnalysis = props => (
-    <div className="polarity-analysis-container" key={result.id}>
-        {result.polarity};
+export const PolarityAnalysis = ({ children }) => (
+    <div className="polarity-analysis-container">
+        {children};
     </div>
 );
-
-export default PolarityAnalysis;

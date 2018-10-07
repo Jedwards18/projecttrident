@@ -1,15 +1,7 @@
 import React from "react";
 
-const PersonalityTraits = props => (
+export const PersonalityTraits = ({ children }) => (
     <div className="personality-traits-results">
-        {props.results.map(result => (
-            <div className="ui list" key={result.id}>
-                <div className="item"> {result.personality[name]}
-                    <div className="item">{result.personality[children[name]]}</div>
-                </div>
-            </div>
-        ))}
+        {children};
     </div>
 );
-
-export default PersonalityTraits;

@@ -1,1 +1,3 @@
-export { default } from "./NewAccount";
+export * from "./Input";
+export * from "./FormBtn";
+export * from "./PopupExampleBasic"

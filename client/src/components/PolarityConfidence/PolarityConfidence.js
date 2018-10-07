@@ -1,9 +1,8 @@
 import React from "react";
 
-const PolarityConfidence = props => (
-    <div className="polarity-confidence-container" key={result.id}>
-        {result.polarity_confidence}
+export const PolarityConfidence = ({ children }) => (
+    <div className="polarity-confidence-container">
+        {/* {result.polarity_confidence} */}
+        {children};
     </div>
 );
-
-export default PolarityConfidence;

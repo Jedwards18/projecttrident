@@ -1,1 +1,1 @@
-export { default } from "./PolarityConfidence";
+export * from "./PolarityConfidence";

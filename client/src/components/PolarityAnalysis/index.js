@@ -1,1 +1,1 @@
-export { default } from "./PolarityAnalysis";
+export * from "./PolarityAnalysis";

@@ -27,6 +27,7 @@ const fetchAnalTweets = async (query) => {
     }
 }
 
+
 fetchAnalTweets("trees");
 
 // Input the query term as a parameter. Will console log the text of 10 tweets with query word in it and perform
