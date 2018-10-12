@@ -23,12 +23,15 @@
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "mongoose": "^5.0.17",
     "if-env": "^1.0.4",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.0.17",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-glide": "^2.0.0",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
+    "react-tag-cloud": "^1.2.0",
     "semantic-ui-react": "^0.82.5"
   }
 }

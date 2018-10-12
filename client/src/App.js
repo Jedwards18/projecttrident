@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import NewAccount from "./components/NewAccount";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Results from "./pages/Results";
 import Navbar from "./components/Navbar";
-import Carousel from "./components/Carousel";
-import OutputContainer from "./components/OutputContainer";
-import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Navbar />
-        <Carousel />
-        <NewAccount />
-        <OutputContainer />
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/result" component={Results} />
+      </Switch>
+    </div>
+  </Router>
+);
 
 export default App;
