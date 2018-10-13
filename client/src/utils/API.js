@@ -5,8 +5,8 @@ export default {
     return axios.get("/api/companies");
   },
 
-  getCompany: function(id) {
-    return axios.get("/api/companies/" + id);
+  getCompany: function(params) {
+    return axios.get("/api/companies/" + { params });
   },
 
   deleteCompany: function(id) {

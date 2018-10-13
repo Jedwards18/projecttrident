@@ -1,28 +1,27 @@
-import React, { Component } from "react";
-import TagCloud from "react-tag-cloud";
-// import randomColor from "randomcolor";
+import * as React from 'react';
 
-class MyCloud extends Component {
-    render() {
-        return (
-            <TagCloud
-                style={{
-                    fontFamily: "sans-serif",
-                    fontSize: 30,
-                    fontWeight: "bold",
-                    fontStyle: "italic",
-                    // color: () => randomColor(),
-                    padding: 5,
-                    width: '100%',
-                    height: '100%'
-                }}>
-                <div style={{fontSize: 50}}>react</div>
-                <div style={{color: 'green'}}>tag</div>
-                <div rotate={90}>cloud</div>
-                TEXT
-            </TagCloud>
-        );
-    }
+import ReactWordCloud from 'react-wordcloud';
+
+const words = [
+    { word: 'hello', value: 3 },
+    { word: 'world', value: 1 },
+    { word: 'github', value: 1 },
+    { word: 'code', value: 1 },
+];
+
+const WORD_COUNT_KEY = 'value';
+const WORD_KEY = 'word';
+
+const WordCloud = () => {
+    return (
+        <div style={{ width: 600, height: 400 }}>
+            <ReactWordCloud
+                words={words}
+                wordCountKey={WORD_COUNT_KEY}
+                wordKey={WORD_KEY}
+            />
+        </div>
+    );
 };
 
-export default MyCloud;
+export default WordCloud;

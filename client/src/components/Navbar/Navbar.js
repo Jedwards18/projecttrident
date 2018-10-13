@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Navbar.css"
+import API from "../../utils/API";
 
 class Navbar extends Component {
     state = {
@@ -16,13 +17,27 @@ class Navbar extends Component {
         });
     };
 
+    authenticate = () => {
+        API.getCompany({ username: this.state.username, password: this.state.password}).then(res => {
+            let user = res.data[0];
+
+            if (user) {
+                alert("Welcome " + user.username);
+                window.localStorage.setItem("user", JSON.stringify(user));
+            } else {
+                alert("Password/email is invalid or user does not exist")
+            }
+        });
+        return;
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
 
         if (!this.state.username || !this.state.password) {
             alert("Please enter a username and password");
         } else {
-            alert("Welcome!")
+            this.authenticate();
         }
 
         this.setState({

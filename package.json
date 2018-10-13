@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "aylien_textapi": "^0.7.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "if-env": "^1.0.4",
@@ -32,6 +33,10 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "react-tag-cloud": "^1.2.0",
-    "semantic-ui-react": "^0.82.5"
+    "react-wordcloud": "https://github.com/chrisrzhou/react-wordcloud.git",
+    "semantic-ui-react": "^0.82.5",
+    "twitter": "^1.7.1",
+    "watson-developer-cloud": "^3.12.0",
+    "yelp-fusion": "^2.2.1"
   }
 }

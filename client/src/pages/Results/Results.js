@@ -4,10 +4,12 @@ import { PolarityConfidence } from "../../components/PolarityConfidence";
 import { TabExampleBasic } from "../../components/TabExampleBasic";
 import { PersonalityTraits } from "../../components/PersonalityTraits";
 import { PolarityAnalysis } from "../../components/PolarityAnalysis";
-import { WordCloud } from "../../components/WordCloud";
+import WordCloud from "../../components/WordCloud";
 import  "../../components/OutputContainer/OutputContainer.css";
 import { PopupExampleBasic } from "../../components/NewAccount/";
 import { ModalModalExample } from "../../components/OutputContainer";
+// import { List, ListItem } from "../../components/TwitterMentions";
+// import {List, ListItem } from "../../components/YelpReviews";
 
 class Results extends Component {
 
@@ -75,7 +77,7 @@ class Results extends Component {
                         <div id="word-cloud-grid">
                             <div id="word-cloud-header">Word Cloud</div>
                             <div id="word-cloud-data">
-                                <p>DISPLAY DATA HERE</p>
+                                <WordCloud />
                             </div>
                         </div>
                     </div>
@@ -84,7 +86,9 @@ class Results extends Component {
                             <div id="data-table-header">Mentions and Reviews</div>
                             <div id="data-table">
                                 {/* <p>DISPLAY DATA TABLE HERE</p> */}
-                                <TabExampleBasic />
+                                <TabExampleBasic 
+                                
+                                />
                             </div>
                         </div>
                     </div>
