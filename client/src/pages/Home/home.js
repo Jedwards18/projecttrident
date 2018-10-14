@@ -1,39 +1,8 @@
 import React, { Component } from 'react';
 import Carousel from '../../components/Carousel';
 import {Input, FormBtn} from "../../components/NewAccount";
-import externalAPI from '../../utils/externalAPI';
 import API from "../../utils/API";
-import "../../components/NewAccount/NewAccount.css";
-import axios from "axios";
-
-const AYLIENTextAPI = require('aylien_textapi');
-const Twitter = require('twitter');
-const yelp = require('yelp-fusion');
-require('dotenv').config()
-
-const twitterClient = new Twitter({
-    consumer_key: "mdQqcA4Wxr299VsGc9sxOjdfw",
-    consumer_secret: "Cv3Npb3D4SJfyHkUwSYuPaC248o4PcRCAoYTiP1fvHfxNO0NQ5",
-    access_token_key: "758504662022488064-vE7aMU0Zx6S9h52jwjsMOyzKQDMnZH9",
-    access_token_secret: "HRo1s3VLeODyYinWfAPlfDFfR9EtSITO3DrwHXBELPbgG"
-});
-
-const yelpKey = "_KhbuC8HXqKq-g3iKKJ0ZCKYk20JwBCiSSuA-D3ZdpUMOSrGRI--gylsgBjAt5_dD5VE6tNZyUQj1OfFVvFGdJIQrTUuN8IOHkCFNoSglaX5lYI7EnqG1mTMIivW3Yx"
-const yelpClient = yelp.client(yelpKey);
-
-const textapi = new AYLIENTextAPI({
-    application_id: "297378ca",
-    application_key: "541a5c8142013a14cc4dca1084b86c28"
-});
-
-var PersonalityInsightsV2 = require('watson-developer-cloud/personality-insights/v2');
-require('dotenv').config()
-
-var personalityInsights = new PersonalityInsightsV2({
-    username: "132449e4-afac-4400-aba4-a3007ae50147",
-    password: "LGMuoNluKVxT",
-    url: 'https://gateway.watsonplatform.net/personality-insights/api/'
-});
+import "../../components/NewAccount/NewAccount.css";    
 
 //################################################################################
 class Home extends Component {
@@ -45,6 +14,12 @@ class Home extends Component {
         businessName: "",
         location: "",
     };
+
+    onLoad() {
+        API.getTweets("taco bell");
+    }
+    
+
 
     handleInputChange = event => {
         const value = event.target.value;
@@ -81,20 +56,20 @@ class Home extends Component {
         console.log(this.state.businessName);
         console.log(this.state.location)
 
-        externalAPI.getTweets(this.state.twitterHandle);
+        // API.getTweets(this.state.twitterHandle);
 
-        // externalAPI.getYelps(
+        // API.getYelps(
         //     this.state.businessName,
         //     this.state.location
         // );
         
-        // externalAPI.analyzeReviews(
+        // API.getSentiment(
         //     this.state.businessName,
         //     this.state.location,
         //     this.state.twitterHandle,
         // );
 
-        // externalAPI.testWatson(
+        // API.getPersonality(
         //     this.state.businessName,
         //     this.state.location,
         //     this.state.twitterHandle
