@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Navbar.css"
 import API from "../../utils/API";
+import tridentlong from "../../images/tridentlong.png";
 
 class Navbar extends Component {
     state = {
@@ -16,21 +17,22 @@ class Navbar extends Component {
             [name]: value
         });
     };
-
+    
     authenticate = () => {
-        API.getCompany({ username: this.state.username, password: this.state.password}).then(res => {
-            let user = res.data[0];
+        API.getCompany({ username: this.state.username, password: this.state.password }).then(res => {
+            const user = res.data[0];
 
             if (user) {
                 alert("Welcome " + user.username);
+                //below keeps the user logged in. to log out we'll need "removeItem"
                 window.localStorage.setItem("user", JSON.stringify(user));
             } else {
-                alert("Password/email is invalid or user does not exist")
+                alert("Password is invalid or user does not exist");
             }
         });
         return;
-    }
 
+    }
     handleFormSubmit = event => {
         event.preventDefault();
 
@@ -45,13 +47,15 @@ class Navbar extends Component {
             password: "",
         })
     };
-
+    //<div className="ui left aligned three wide column" id="logo">
+    //    <img id="logo-image" src="https://cdn2.vectorstock.com/i/1000x1000/45/56/trident-logo-template-vector-17464556.jpg"></img>
+    //</div>
     render() {
         return (
             <div className="header" id="navbar">
             <div className="ui grid">
-                <div className="ui left aligned three wide column" id="logo">
-                    <img id="logo-image" src="https://cdn2.vectorstock.com/i/1000x1000/45/56/trident-logo-template-vector-17464556.jpg"></img>
+                <div className="three wide column">
+                    <img className="float left" src={tridentlong}></img>
                 </div>
                 <div className="six wide column"></div>
                 <div className="ui right floated two wide column" id="username">

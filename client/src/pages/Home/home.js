@@ -121,16 +121,20 @@ class Home extends Component {
                     </div>
                     <div className="field">
                         <div className="fields">
+                            <div className="four wide field"></div>
                             <div className="eight wide field">
                                 <label>Location (City and State)</label>
                                 <Input value={this.state.location} onChange={this.handleInputChange} type="text" name="location" placeholder="City and State"></Input>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <FormBtn className="ui button" onClick={this.handleFormSubmit}>
-                            Submit
-                        </FormBtn>
+                    <div className="field">
+                        <div className="fields">
+                            <div className="fifteen wide field"></div>
+                            <FormBtn className="ui button" onClick={this.handleFormSubmit}>
+                                Submit
+                            </FormBtn>
+                        </div>
                     </div>
                 </div>
             </div>
