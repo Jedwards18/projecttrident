@@ -10,7 +10,7 @@ class Home extends Component {
         username: "",
         password: "",
         email: "",
-        twitterHandle: "",
+        query: "",
         businessName: "",
         location: "",
     };
@@ -44,7 +44,7 @@ class Home extends Component {
                 username: this.state.username,
                 password: this.state.password,
                 email: this.state.email,
-                twitter: this.state.twitterHandle,
+                twitter: this.state.query,
                 yelp: this.state.businessName + '' + this.state.location,
             })
         };
@@ -52,34 +52,34 @@ class Home extends Component {
         console.log(this.state.username);
         console.log(this.state.password);
         console.log(this.state.email);
-        console.log(this.state.twitterHandle);
+        console.log(this.state.query);
         console.log(this.state.businessName);
         console.log(this.state.location)
 
-        // API.getTweets(this.state.twitterHandle);
+        API.getTweets(this.state.query);
 
-        // API.getYelps(
-        //     this.state.businessName,
-        //     this.state.location
-        // );
+        API.getYelps(
+            this.state.businessName,
+            this.state.location
+        );
         
-        // API.getSentiment(
-        //     this.state.businessName,
-        //     this.state.location,
-        //     this.state.twitterHandle,
-        // );
+        API.getSentiment(
+            this.state.query,
+            this.state.businessName,
+            this.state.location
+        );
 
-        // API.getPersonality(
-        //     this.state.businessName,
-        //     this.state.location,
-        //     this.state.twitterHandle
-        // );
+        API.getPersonality(
+            this.state.query,
+            this.state.businessName,
+            this.state.location
+        );
 
         this.setState({
             username: "",
             password: "",
             email: "",
-            twitterHandle: "",
+            query: "",
             businessName: "",
             location: "",
         });
@@ -111,7 +111,7 @@ class Home extends Component {
                         <div className="fields">
                             <div className="eight wide field">
                                 <label>Twitter Handle</label>
-                                <Input value={this.state.twitterHandle} onChange={this.handleInputChange} type="text" name="twitterHandle" placeholder="Twitter Handle"></Input>
+                                <Input value={this.state.query} onChange={this.handleInputChange} type="text" name="query" placeholder="Twitter Handle"></Input>
                             </div>
                             <div className="eight wide field">
                                 <label>Business Name</label>
