@@ -33,7 +33,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "react-tag-cloud": "^1.2.0",
-    "react-wordcloud": "https://github.com/chrisrzhou/react-wordcloud.git",
+    "react-wordcloud": "^0.0.1",
     "semantic-ui-react": "^0.82.5",
     "twitter": "^1.7.1",
     "watson-developer-cloud": "^3.12.0",
