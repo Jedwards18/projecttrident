@@ -32,11 +32,11 @@ module.exports = ext = {
     getTweets: async (req, res) => {
 
         try { 
-            let tweets = await twitterClient.get('search/tweets', { q: req.params.query, count: 10 });
-            let tweetText = tweets.statuses.map(tweet => tweet.text)
-            console.log('/n')
-            console.log(tweetText)
-            return tweetText;
+            let tweets = await twitterClient.get('search/tweets', { q: req.params.query, lang: "en", count: 10 });
+            tweets = tweets.statuses.map(tweet => tweet.text)
+            console.log('*******************************************************************')
+            console.log(tweets)
+            return res.json(tweets)
         } catch (err) {
             console.log(err)
         }
@@ -46,8 +46,8 @@ module.exports = ext = {
     searchBiz: async (term, location) => {
 
         let client = await yelpClient.search({ term: term, location: location })
-        console.log('/n')
-        console.log(`${client.jsonBody.businesses[0].name}: ${client.jsonBody.businesses[0].id}`);
+        console.log('*******************************************************************')
+        // console.log(`${client.jsonBody.businesses[0].name}: ${client.jsonBody.businesses[0].id}`);
         return client.jsonBody.businesses[0].id;
     },
 
@@ -63,9 +63,9 @@ module.exports = ext = {
         try {
             let id = await ext.searchBiz(req.params.term, req.params.location);
             let yelpReviews = await ext.getBizReviews(id);
-            console.log('/n')
+            console.log('*******************************************************************')
             console.log(yelpReviews)
-            return yelpReviews
+            return res.json(yelpReviews)
         } catch (err) {
             console.log(err)
         }
@@ -73,7 +73,7 @@ module.exports = ext = {
     //#############################################################################
     intTweets: async (query) => {
 
-        let tweets = await twitterClient.get('search/tweets', { q: query, count: 10 });
+        let tweets = await twitterClient.get('search/tweets', { q: query, lang: "en", count: 10 });
         let tweetText = tweets.statuses.map(tweet => tweet.text)
         // console.log(tweetText)
         return tweetText;
@@ -92,30 +92,37 @@ module.exports = ext = {
         try {
             let tweetYelp = await Promise.all([ext.intTweets(req.params.query), ext.intYelps(req.params.term, req.params.location)]);
             tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
-            await textapi.sentiment({ text: tweetYelp, mode: 'document' }, (err, res) => { 
-                console.log('/n')
-                console.log(res)
-                return res
-            });
+            let analysis = await textapi.sentiment({ text: tweetYelp, mode: 'document' }, (err, res) => { res.json(res) });
+            // console.log(analysis);
+            // return res.json(analysis);
         } catch (err) {
             console.log(err)
         }
     },
 
     //#############################################################################
+    intPersonality: async (query, term, location) => {
+
+        let tweetYelp = await Promise.all([ext.intTweets(query), ext.intYelps(term, location)]);
+        tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
+        await personalityInsights.profile({ text: tweetYelp }, (err, res) => { 
+            return res
+                // let pObj = res.tree.children[0].children[0].children
+                //     .map(x => {
+                //     return {"trait": x.id, "percentage": x.percentage} 
+                //     });
+                
+                // return pObj;
+            }
+        )
+    },
+    
     getPersonality: async (req, res) => {
         
         try {
-            let tweetYelp = await Promise.all([ext.intTweets(req.params.query), ext.intYelps(req.params.term, req.params.location)]);
-            tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
-            await personalityInsights.profile(
-                { text: tweetYelp },
-                (err, res) => {
-                    console.log('/n')
-                    console.log(JSON.stringify(res.tree.children[0].children[0].children, null, 1))
-                    return JSON.stringify(res.tree.children[0].children[0].children)
-                }   
-            )
+            let personality = await ext.intPersonality(req.params.query, req.params.term, req.params.location);
+            console.log(personality);
+            return res.json(personality);
         } catch (err) {
             console.log(err)
         }
