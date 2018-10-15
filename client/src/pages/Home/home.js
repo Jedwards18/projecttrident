@@ -56,12 +56,21 @@ class Home extends Component {
         console.log(this.state.businessName);
         console.log(this.state.location)
 
-        API.getTweets(this.state.query);
+        const getTweets = async () => {
+            let tweets = await API.getTweets(this.state.query);
+            tweets = tweets.data;
+            this.setState({tweets});
+            console.log(this.state.tweets);
+        }   
+        getTweets()
 
-        API.getYelps(
-            this.state.businessName,
-            this.state.location
-        );
+        const getYelps = async () => {
+            let yelps = await API.getYelps(this.state.businessName, this.state.location);
+            yelps = yelps.data;
+            this.setState({yelps});
+            console.log(this.state.yelps);
+        };
+        getYelps()
         
         API.getSentiment(
             this.state.query,

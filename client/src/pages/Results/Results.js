@@ -85,8 +85,15 @@ class Results extends Component {
                         <div id="data-table-grid">
                             <div id="data-table-header">Mentions and Reviews</div>
                             <div id="data-table">
+                                <ul>
+                                    {this.state.tweets.map((tweet, i) => <li key={i}>{tweet}</li>)}
+                                </ul>
+                                <ul>
+                                    {this.state.yelps.map((yelp, i) => <li key={i}>{yelp}</li>)}
+                                </ul>
                                 {/* <p>DISPLAY DATA TABLE HERE</p> */}
                                 <TabExampleBasic 
+                                    
                                 
                                 />
                             </div>
