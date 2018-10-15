@@ -1,16 +1,20 @@
 const router = require("express").Router();
 const extController = require("../../controllers/extController");
 
-// router.route("/sentiment")
-//   .get(extController.analyzeReviews);
+// "/api/ext/sentiment/:query"
+router.route("/sentiment/:query/:term/:location")
+  .get(extController.getSentiment);
 
-// router.route("/personality")
-//   .get(extController.testWatson);
+  // "/api/ext/personality/:query"
+router.route("/personality/:query/:term/:location")
+  .get(extController.getPersonality);
 
-router.route("/tweets")
-  .get(extController.app.get("/api/ext/tweets/:query"));
+// "/api/ext/tweets/:query"
+router.route("/tweets/:query")
+  .get(extController.getTweets);
 
-// router.route("/yelps")
-//   .get(extController.getYelps);
+  // "/api/ext/yelps/:query"
+router.route("/yelps/:term/:location")
+  .get(extController.getYelps);
 
 module.exports = router;

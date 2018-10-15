@@ -6,7 +6,7 @@ import { PersonalityTraits } from "../../components/PersonalityTraits";
 import { PolarityAnalysis } from "../../components/PolarityAnalysis";
 import WordCloud from "../../components/WordCloud";
 import  "../../components/OutputContainer/OutputContainer.css";
-import { PopupExampleBasic } from "../../components/NewAccount/";
+// import { PopupExampleBasic } from "../../components/NewAccount/";
 import { ModalModalExample } from "../../components/OutputContainer";
 // import { List, ListItem } from "../../components/TwitterMentions";
 // import {List, ListItem } from "../../components/YelpReviews";

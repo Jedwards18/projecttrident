@@ -10,26 +10,26 @@ export default {
   },
 
   deleteCompany: function(id) {
-    return axios.delete("/api/companies/" + id);
+    return axios.delete(`/api/companies/${id}`);
   },
 
   saveCompany: function(companyData) {
     return axios.post("/api/companies", companyData);
   },
 
-  getSentiment: function(params) {
-    return axios.get("/api/ext/sentiment" + { params });
+  getSentiment: function(query, term, location) {
+    return axios.get(`/api/ext/sentiment/${query}/${term}/${location}`);
   },
  
-  getPersonality: function(params) {
-    return axios.get("api/ext/personality" + { params });
+  getPersonality: function(query, term, location) {
+    return axios.get(`/api/ext/personality/${query}/${term}/${location}`);
   },
 
-  getTweets: function(params) {
-    return axios.get("api/ext/tweets" + { params });
+  getTweets: function(query) {
+    return axios.get(`api/ext/tweets/${query}`);
   },
 
-  getYelps: function(params) {
-    return axios.get("api/ext/yelps" + { params });
+  getYelps: function(term, location) {
+    return axios.get(`api/ext/yelps/${term}/${location}`);
   }
 }
