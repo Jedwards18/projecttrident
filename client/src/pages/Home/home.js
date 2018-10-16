@@ -3,25 +3,23 @@ import Carousel from '../../components/Carousel';
 import {Input, FormBtn} from "../../components/NewAccount";
 import API from "../../utils/API";
 import "../../components/NewAccount/NewAccount.css";    
-
+import Results from '../../components/Results'
 //################################################################################
 class Home extends Component {
-    state = {
-        username: "",
-        password: "",
-        email: "",
-        query: "",
-        businessName: "",
-        location: "",
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: "",
+            email: "",
+            query: "",
+            businessName: "",
+            location: "",
+            showResults: false
+        };
     };
 
-    onLoad() {
-        API.getTweets("taco bell");
-    }
-    
-
-
-    handleInputChange = event => {
+        handleInputChange = event => {
         const value = event.target.value;
         const name = event.target.name;
 
@@ -34,12 +32,12 @@ class Home extends Component {
         event.preventDefault();
 
         if (!this.state.username || !this.state.password || !this.state.email || !this.state.location) {
-            alert("Please complete the form in its entirety")
+            // alert("Please complete the form in its entirety")
         } else if (this.state.password.length < 6) {
-            alert("Please choose a more secure password")
+            // alert("Please choose a more secure password")
         }
         else {
-            alert("New account registered. Welcome!")
+            // alert("New account registered. Welcome!")
             API.saveCompany ({
                 username: this.state.username,
                 password: this.state.password,
@@ -62,7 +60,6 @@ class Home extends Component {
             this.setState({tweets});
             console.log(this.state.tweets);
         };   
-        getTweets()
 
         const getYelps = async () => {
             let yelps = await API.getYelps(this.state.businessName, this.state.location);
@@ -70,7 +67,6 @@ class Home extends Component {
             this.setState({yelps});
             console.log(this.state.yelps);
         };
-        getYelps()
         
         const getSentiment = async () => {
             let sentiment = await API.getSentiment(this.state.query, this.state.businessName, this.state.location);
@@ -78,7 +74,6 @@ class Home extends Component {
             this.setState({sentiment});
             console.log(this.state.sentiment);
         };
-        getSentiment()
 
         const getPersonality = async () => {
             let personality = await API.getPersonality(this.state.query, this.state.businessName, this.state.location)
@@ -86,7 +81,6 @@ class Home extends Component {
             this.setState({personality});
             console.log(this.state.personality);
         };
-        getPersonality()
 
         this.setState({
             username: "",
@@ -96,6 +90,14 @@ class Home extends Component {
             businessName: "",
             location: "",
         });
+
+        const allCalls = async () => {
+            await Promise.all([getTweets(), getYelps(), getSentiment(), getPersonality()]);
+            this.setState({ showResults: true });
+        };
+        allCalls();
+
+        
     };
       
     render() {
@@ -150,6 +152,15 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
+
+                <div>{ this.state.showResults ? <Results
+                    tweets={this.state.tweets}
+                    yelps={this.state.yelps}
+                    sentiment={this.state.sentiment}
+                    personality={this.state.personality}
+                    ></Results>: null }
+                </div>
+
                 <div class="ui confirm modal">
                     <div class="content">
                     <p>New account registered. Welcome!</p>
@@ -165,6 +176,7 @@ class Home extends Component {
                     <p>Please complete the form in its entirety.</p>
                     </div>
                 </div>
+
             </div>
         )
     }

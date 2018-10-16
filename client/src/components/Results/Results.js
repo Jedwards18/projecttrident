@@ -8,19 +8,14 @@ import WordCloud from "../../components/WordCloud";
 import  "../../components/OutputContainer/OutputContainer.css";
 // import { PopupExampleBasic } from "../../components/NewAccount/";
 import { ModalModalExample } from "../../components/OutputContainer";
-// import { List, ListItem } from "../../components/TwitterMentions";
+import { List, ListItem } from "../../components/TwitterMentions";
 // import {List, ListItem } from "../../components/YelpReviews";
 
 class Results extends Component {
-
-    state = {
-        personalityTraits: '',
-        polarityAnalysis: '',
-        polarityConfidence: '',
-        wordCloud: '',
-        dataTable: '',         
-    }
-
+    constructor(props) {
+        super(props);
+    };
+   
     componentDidMount() {
         this.handleClick();
     }
@@ -28,6 +23,8 @@ class Results extends Component {
     handleClick() {
         
     }
+
+    
 
     render() {
         return (
@@ -37,13 +34,21 @@ class Results extends Component {
                 <div className="row">
                     <div className="column">
                         <div id="personality-traits-results-grid">
-                            <div id="personality-traits-results-header">
+                            {this.props.personality.length ? (
+                                <List>
                                 Personality Traits 
-                                <ModalModalExample />
-                            </div>
-                                <div>
-                                    <PersonalityTraits value={this.state.personalityTraits} />
-                                </div>
+                                {this.props.personality.map((trait, i) => (
+                                    <ListItem key={i}>
+                                    <em>{trait.trait}</em>
+                                    <ul>
+                                        <li>{trait.percentage}</li>
+                                    </ul>
+                                    </ListItem>
+                                ))}
+                            </List>
+                            ) : (
+                                <h3>No Results to Display</h3>
+                            )}
                         </div>
                     </div>
                     <div className="column">
@@ -55,7 +60,7 @@ class Results extends Component {
                                         <div id="polarity-result-grid">
                                             <div id="polarity-result-header">Polarity</div>
                                             <div id="polarity-result">
-                                                <PolarityAnalysis value={this.state.polarityAnalysis} />
+                                                {this.props.sentiment.polarity}
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +68,7 @@ class Results extends Component {
                                         <div id="polarity-confidence-result-grid">
                                             <div id="polarity-confidence-result-header">Polarity Confidence</div>
                                             <div id="polarity-confidence-result">
-                                                <PolarityConfidence value={this.state.polarityConfidence} />
+                                                {this.props.sentiment.confidence}
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +82,19 @@ class Results extends Component {
                         <div id="word-cloud-grid">
                             <div id="word-cloud-header">Word Cloud</div>
                             <div id="word-cloud-data">
-                                <WordCloud />
+                            {this.props.yelps.length ? (
+                              <List>
+                                {this.props.yelps.map((yelp, i) => (
+                                  <ListItem key={i}>
+                                      <ul>
+                                        <li>{yelp}</li>
+                                      </ul>
+                                  </ListItem>
+                                ))}
+                              </List>
+                            ) : (
+                              <h3>No Results to Display</h3>
+                            )}
                             </div>
                         </div>
                     </div>
@@ -85,17 +102,22 @@ class Results extends Component {
                         <div id="data-table-grid">
                             <div id="data-table-header">Mentions and Reviews</div>
                             <div id="data-table">
-                                <ul>
-                                    {this.state.tweets.map((tweet, i) => <li key={i}>{tweet}</li>)}
-                                </ul>
-                                <ul>
-                                    {this.state.yelps.map((yelp, i) => <li key={i}>{yelp}</li>)}
-                                </ul>
-                                {/* <p>DISPLAY DATA TABLE HERE</p> */}
-                                <TabExampleBasic 
+                            {this.props.tweets.length ? (
+                              <List>
+                                {this.props.tweets.map((tweet, i) => (
+                                  <ListItem key={i}>
+                                      <ul>
+                                        <li>{tweet}</li>
+                                      </ul>
+                                  </ListItem>
+                                ))}
+                              </List>
+                            ) : (
+                              <h3>No Results to Display</h3>
+                            )}
+                             
                                     
-                                
-                                />
+                                                               
                             </div>
                         </div>
                     </div>
