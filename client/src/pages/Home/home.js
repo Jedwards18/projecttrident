@@ -61,7 +61,7 @@ class Home extends Component {
             tweets = tweets.data;
             this.setState({tweets});
             console.log(this.state.tweets);
-        }   
+        };   
         getTweets()
 
         const getYelps = async () => {
@@ -72,17 +72,21 @@ class Home extends Component {
         };
         getYelps()
         
-        API.getSentiment(
-            this.state.query,
-            this.state.businessName,
-            this.state.location
-        );
+        const getSentiment = async () => {
+            let sentiment = await API.getSentiment(this.state.query, this.state.businessName, this.state.location);
+            sentiment = {"polarity": sentiment.data.polarity, "confidence": sentiment.data.polarity_confidence};
+            this.setState({sentiment});
+            console.log(this.state.sentiment);
+        };
+        getSentiment()
 
-        API.getPersonality(
-            this.state.query,
-            this.state.businessName,
-            this.state.location
-        );
+        const getPersonality = async () => {
+            let personality = await API.getPersonality(this.state.query, this.state.businessName, this.state.location)
+            personality = personality.data
+            this.setState({personality});
+            console.log(this.state.personality);
+        };
+        getPersonality()
 
         this.setState({
             username: "",
