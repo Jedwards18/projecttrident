@@ -54,8 +54,8 @@ class Navbar extends Component {
         return (
             <div className="header" id="navbar">
             <div className="ui grid">
-                <div className="three wide column">
-                    <img className="float left" src={tridentlong}></img>
+                <div className="two wide column">
+                    <img className="float left left aligned" src={tridentlong}></img>
                 </div>
                 <div className="six wide column"></div>
                 <div className="ui right floated two wide column" id="username">
@@ -77,6 +77,7 @@ class Navbar extends Component {
                     Submit
                     </button>
                 </div>
+                <div className="one wide column"></div>
             </div>
         </div>
         )
