@@ -46,7 +46,7 @@ module.exports = ext = {
     searchBiz: async (term, location) => {
 
         let client = await yelpClient.search({ term: term, location: location })
-        console.log('*******************************************************************')
+        console.log('turbodixxx')
         // console.log(`${client.jsonBody.businesses[0].name}: ${client.jsonBody.businesses[0].id}`);
         return client.jsonBody.businesses[0].id;
     },
@@ -92,40 +92,29 @@ module.exports = ext = {
         try {
             let tweetYelp = await Promise.all([ext.intTweets(req.params.query), ext.intYelps(req.params.term, req.params.location)]);
             tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
-            let analysis = await textapi.sentiment({ text: tweetYelp, mode: 'document' }, (err, res) => { res.json(res) });
-            // console.log(analysis);
-            // return res.json(analysis);
+            textapi.sentiment({ text: tweetYelp, mode: 'document' }, (err, analysis) => {
+            res.json(analysis);
+            });
         } catch (err) {
             console.log(err)
         }
     },
 
     //#############################################################################
-    intPersonality: async (query, term, location) => {
-
-        let tweetYelp = await Promise.all([ext.intTweets(query), ext.intYelps(term, location)]);
-        tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
-        await personalityInsights.profile({ text: tweetYelp }, (err, res) => { 
-            return res
-                // let pObj = res.tree.children[0].children[0].children
-                //     .map(x => {
-                //     return {"trait": x.id, "percentage": x.percentage} 
-                //     });
-                
-                // return pObj;
-            }
-        )
-    },
-    
     getPersonality: async (req, res) => {
         
         try {
-            let personality = await ext.intPersonality(req.params.query, req.params.term, req.params.location);
-            console.log(personality);
-            return res.json(personality);
-        } catch (err) {
+            let tweetYelp = await Promise.all([ext.intTweets(req.params.query), ext.intYelps(req.params.term, req.params.location)]);
+            tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
+            await personalityInsights.profile({ text: tweetYelp }, (err, personality) => { 
+                let pObj = personality.tree.children[0].children[0].children
+                    .map(x => { return {"trait": x.id, "percentage": x.percentage}});
+                res.json(pObj);
+             })
+        } catch (err){
             console.log(err)
-        }
+        }    
     },
+    
 };
 

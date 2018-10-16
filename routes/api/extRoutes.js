@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const extController = require("../../controllers/extController");
 
-// "/api/ext/sentiment/:query"
+// "/api/ext/sentiment/:query.."
 router.route("/sentiment/:query/:term/:location")
   .get(extController.getSentiment);
 
-  // "/api/ext/personality/:query"
+  // "/api/ext/personality/:query.."
 router.route("/personality/:query/:term/:location")
   .get(extController.getPersonality);
 
@@ -13,7 +13,7 @@ router.route("/personality/:query/:term/:location")
 router.route("/tweets/:query")
   .get(extController.getTweets);
 
-  // "/api/ext/yelps/:query"
+  // "/api/ext/yelps/:query.."
 router.route("/yelps/:term/:location")
   .get(extController.getYelps);
 
