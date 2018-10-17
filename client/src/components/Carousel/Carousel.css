@@ -14,10 +14,20 @@
     font-weight: bold;
     margin-bottom: 10px;
     text-decoration: underline;
+    color: white;
 }
 
 
 .ui.card>.content, 
 .ui.cards>.card>.content  {
     background-color: #98C1D8;
+}
+
+.description {
+    color: white;
+}
+
+h1 {
+    color: white;
+    font-size: 69px
 }

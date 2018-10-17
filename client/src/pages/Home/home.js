@@ -4,6 +4,7 @@ import {Input, FormBtn} from "../../components/NewAccount";
 import API from "../../utils/API";
 import "../../components/NewAccount/NewAccount.css";    
 import Results from '../../components/Results'
+
 //################################################################################
 class Home extends Component {
     constructor(props) {
@@ -17,7 +18,9 @@ class Home extends Component {
             location: "",
             showResults: false
         };
+
     };
+    
 
         handleInputChange = event => {
         const value = event.target.value;
@@ -161,25 +164,12 @@ class Home extends Component {
                     ></Results>: null }
                 </div>
 
-                <div class="ui confirm modal">
-                    <div class="content">
-                    <p>New account registered. Welcome!</p>
-                    </div>
-                </div>
-                <div class="ui password modal">
-                    <div class="content">
-                    <p>Please choose a more secure password.</p>
-                    </div>
-                </div>
-                <div class="ui incomplete modal">
-                    <div class="content">
-                    <p>Please complete the form in its entirety.</p>
-                    </div>
-                </div>
-
             </div>
         )
     }
 };
+
+
+
 
 export default Home;

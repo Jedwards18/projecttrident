@@ -9,7 +9,8 @@ import  "../../components/OutputContainer/OutputContainer.css";
 // import { PopupExampleBasic } from "../../components/NewAccount/";
 import { ModalModalExample } from "../../components/OutputContainer";
 import { List, ListItem } from "../../components/TwitterMentions";
-// import {List, ListItem } from "../../components/YelpReviews";
+import  Chart  from "../../components/Chart";
+import {Table, TableItem } from "../../components/Table";
 
 class Results extends Component {
     constructor(props) {
@@ -21,20 +22,18 @@ class Results extends Component {
     }
 
     handleClick() {
-        
     }
-
-    
 
     render() {
         return (
             <div>
                 <div className="ui two column grid" id="output-container">
-                <div id="output-container-header">Your results have been populated using the most recent data. <br></br>Go forth and maximize your company's potential!</div>
+                <div id="output-container-header">Results <br></br>Go forth and maximize your company's potential!</div>
                 <div className="row">
                     <div className="column">
                         <div id="personality-traits-results-grid">
-                            {this.props.personality.length ? (
+                        <Chart personality={this.props.personality}></Chart>
+                            {/* {this.props.personality.length ? (
                                 <List>
                                 Personality Traits 
                                 {this.props.personality.map((trait, i) => (
@@ -48,7 +47,7 @@ class Results extends Component {
                             </List>
                             ) : (
                                 <h3>No Results to Display</h3>
-                            )}
+                            )} */}
                         </div>
                     </div>
                     <div className="column">
@@ -80,18 +79,16 @@ class Results extends Component {
                 <div className="row">
                     <div className="column">
                         <div id="word-cloud-grid">
-                            <div id="word-cloud-header">Word Cloud</div>
+                            <div id="word-cloud-header">Yelps</div>
                             <div id="word-cloud-data">
                             {this.props.yelps.length ? (
-                              <List>
+                              <Table>
                                 {this.props.yelps.map((yelp, i) => (
-                                  <ListItem key={i}>
-                                      <ul>
-                                        <li>{yelp}</li>
-                                      </ul>
-                                  </ListItem>
+                                  <TableItem key={i}>
+                                        <td>{yelp}</td>
+                                  </TableItem>
                                 ))}
-                              </List>
+                              </Table>
                             ) : (
                               <h3>No Results to Display</h3>
                             )}
@@ -100,18 +97,16 @@ class Results extends Component {
                     </div>
                     <div className="column">
                         <div id="data-table-grid">
-                            <div id="data-table-header">Mentions and Reviews</div>
+                            <div id="data-table-header">Tweets</div>
                             <div id="data-table">
                             {this.props.tweets.length ? (
-                              <List>
+                              <Table>
                                 {this.props.tweets.map((tweet, i) => (
-                                  <ListItem key={i}>
-                                      <ul>
-                                        <li>{tweet}</li>
-                                      </ul>
-                                  </ListItem>
+                                  <TableItem key={i}>
+                                        <td>{tweet}</td>
+                                  </TableItem>
                                 ))}
-                              </List>
+                              </Table>
                             ) : (
                               <h3>No Results to Display</h3>
                             )}
