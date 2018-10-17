@@ -55,7 +55,7 @@ class Navbar extends Component {
             <div className="header" id="navbar">
             <div className="ui grid">
                 <div className="two wide column">
-                    <img className="float left left aligned" src={tridentlong}></img>
+                    <img  className="float left left aligned" src={tridentlong} alt="trident icon"></img>
                 </div>
                 <div className="six wide column"></div>
                 <div className="ui right floated two wide column" id="username">

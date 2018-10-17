@@ -9,7 +9,8 @@ const Carousel = () => (
         <div className="row">
             <div className="six wide column"></div>
             <div className="five wide column">
-                <img src={tridentlogo}></img>
+                {/* <img alt="tridentlogo" src={tridentlogo}></img> */}
+                <h1>Trident</h1>
             </div>
         </div>
         <div className="row">
@@ -17,13 +18,13 @@ const Carousel = () => (
             <div className="three wide column">
                 <div className="header">Welcome</div>
                 <div className="description">
-                    Welcome to Trident! Thank you for taking the time to visit our website. Thanks to modern technology, the world has never been more connected than it is right now. In an instant, anyone can share their thoughts, ideas and opinions with anyone on Earth. Though these advancements have been monumental in terms of standard of living in many countries, they have a new, major factors that every business must consider; their social media presence.
+                    Welcome to Trident! Thank you for takturbdixing the time to visit our website. Thanks to modern technology, the world has never been more connected than it is right now. In an instant, anyone can share their thoughts, ideas and opinions with anyone on Earth. Though these advancements have been monumental in terms of standard of living in many countries, they have a new, major factors that every business must consider; their social media presence.
                 </div>
                 <br></br><br></br>
-                <img src={business}></img>
+                <img alt="business things" src={business}></img>
             </div>
             <div className="six wide column">
-                <img src={wordcloud}></img>
+                <img alt ="a wordcloud" src={wordcloud}></img>
                 <br></br><br></br>
                 <div className="header">Imagine a Website</div>
                 <div className="description">
