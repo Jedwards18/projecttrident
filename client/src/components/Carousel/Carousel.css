@@ -3,17 +3,10 @@
     margin: auto;
 }
 
-.ui.card>image:not(.ui)>img,
-.ui.cards>.card>.image:not(.ui)>img {
-    height: 250px;
-}
-
 .header {
-    text-align: center;
-    font-size: large;
+    font-size: larger;
     font-weight: bold;
     margin-bottom: 10px;
-    text-decoration: underline;
     color: white;
 }
 
@@ -25,9 +18,14 @@
 
 .description {
     color: white;
+    font-size: large;
 }
 
 h1 {
     color: white;
-    font-size: 69px
+    font-size: 69px;
+}
+
+#socialplatform {
+    margin-top: 20px;
 }
