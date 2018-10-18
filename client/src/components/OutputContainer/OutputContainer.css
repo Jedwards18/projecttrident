@@ -27,9 +27,18 @@
 #data-table-header {
     text-align: center;
     margin-bottom: 15px;
-    font-size: 16px;
+    margin-top: 10px;
+    font-size: 24px;
     background-color: white;
     color: black;
+}
+
+#polarity-analysis-results-header {
+    float: right;
+}
+
+.ui.mini.button {
+    margin-top: 5px;
 }
 
 #personality-traits-results-grid, 

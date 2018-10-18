@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Navbar.css"
 import API from "../../utils/API";
 import tridentlong from "../../images/tridentlong.png";
+import tridentcircle from "../../images/tridentcircle.png";
 
 class Navbar extends Component {
     state = {
@@ -55,7 +56,7 @@ class Navbar extends Component {
             <div className="header" id="navbar">
             <div className="ui grid">
                 <div className="two wide column">
-                    <img  className="float left left aligned" src={tridentlong} alt="trident icon"></img>
+                    <img  className="float left left aligned" id="logo" src={tridentlong} alt="trident icon"></img>
                 </div>
                 <div className="six wide column"></div>
                 <div className="ui right floated two wide column" id="username">
@@ -70,7 +71,7 @@ class Navbar extends Component {
                 </div>
                 <div className="ui right floated two wide column" id="submit-button">
                     <button 
-                    className="ui button" 
+                    className="ui big inverted basic button" 
                     type="submit"
                     onClick={this.handleFormSubmit}
                     >
