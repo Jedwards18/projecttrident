@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  Chart  from "../../components/Chart";
 import {Accordion, Container, Card, Grid, Header, Icon, Statistic, Table} from 'semantic-ui-react';
+import { getPriority } from 'os';
 
 class Results extends Component {
     state = { activeIndex: 0 }
@@ -22,6 +23,8 @@ class Results extends Component {
             case "negative":
                 return <div><Icon size='massive' color='red' name='thumbs down'/> <span>Negative</span></div>;
         }
+
+   
     };
 
     render() {
@@ -29,14 +32,15 @@ class Results extends Component {
         
     return (
 
-    <Container>
-      <div>
+    <Container >
         <Header as='h1'>Results</Header>   
         <Grid stackable columns={5}>
             <Grid.Column width={6}>
             <Card fluid>
+              <Card.Content>
                 <Card.Header>Sentiment</Card.Header>
                 <Card.Meta>How do they feel about you?</Card.Meta>
+                </Card.Content>
               <Card.Content>
                 <Statistic>
                     <Statistic.Value>{(this.props.sentiment.confidence*100).toFixed(2)}% Certainty</Statistic.Value>
@@ -50,7 +54,7 @@ class Results extends Component {
             <Card fluid>
               <Card.Content>
                 <Card.Header>Personality Traits</Card.Header>
-                <Card.Meta>Learn those Bobs</Card.Meta>
+                <Card.Meta>Watson's certainty of each of the Big 5 Personality traits.</Card.Meta>
               </Card.Content>
               <Card.Content>
                   <Chart personality={this.props.personality}></Chart>
@@ -65,7 +69,9 @@ class Results extends Component {
           
             <Grid.Column width={6}>
             <Card fluid>
-                <Card.Header>Recent Tweets</Card.Header>
+                <Card.Content>
+                    <Card.Header>Recent Tweets</Card.Header>
+                </Card.Content>
                 <Card.Content>
                     {this.props.tweets.length ? (
                         <Table selectable celled>
@@ -88,7 +94,9 @@ class Results extends Component {
 
             <Grid.Column width={4}>               
             <Card fluid>
-                <Card.Header>Recent Tweets</Card.Header>
+                <Card.Content>
+                    <Card.Header>Recent Yelp Reviews</Card.Header>
+                </Card.Content>
                 <Card.Content>
                     {this.props.yelps.length ? (
                         <Table selectable celled>
@@ -111,7 +119,9 @@ class Results extends Component {
 
             <Grid.Column width={6}>                
             <Card fluid>
-                <Card.Header>Sub-traits of the Big 5 Personality Indicators</Card.Header>
+                <Card.Content>
+                    <Card.Header>Sub-traits of the Big 5 Personality Indicators</Card.Header>
+                    </Card.Content>
                 <Card.Content>
                     <Accordion exclusive={false} fluid styled>
 
@@ -225,7 +235,6 @@ class Results extends Component {
             </Grid.Column>
             
         </Grid> 
-      </div> 
     </Container>  
 
         

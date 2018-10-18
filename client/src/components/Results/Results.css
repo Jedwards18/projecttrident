@@ -1,3 +1,4 @@
-Container {
-    background: rgb(222,239,255)
+#outputContainer {
+    background:#D3D3D3;
+    padding: 30px;
 }
