@@ -32,6 +32,16 @@ class Results extends Component {
                 <div className="row">
                     <div className="column">
                         <div id="personality-traits-results-grid">
+                            <div className="ui grid">
+                                <div className="eight wide column right aligned">
+                                    <div id="polarity-analysis-results-header">Personality Traits</div>
+                                </div>
+                                <div className="eight wide column">
+                                    <div className="ui mini button" data-tooltip="These results represent the primary personality traits of those who have used your service/product" position="top left">
+                                        More Info
+                                </div>
+                                </div>
+                            </div>
                         <Chart personality={this.props.personality}></Chart>
                             {/* {this.props.personality.length ? (
                                 <List>
@@ -52,7 +62,16 @@ class Results extends Component {
                     </div>
                     <div className="column">
                         <div id="polarity-analysis-results-grid">
-                            <div id="polarity-analysis-results-header">Polarity Analysis</div>
+                            <div className="ui grid">
+                                <div className="eight wide column right aligned">
+                                    <div id="polarity-analysis-results-header">Polarity Analysis</div>
+                                </div>
+                                <div className="eight wide column">
+                                    <div className="ui mini button" data-tooltip="These results represent the polarity, and confidence, of your company based off the social media activity of your company" position="top left">
+                                        More Info
+                                    </div>
+                                </div>
+                            </div>
                             <div className="ui two column divided grid">
                                 <div className="row">
                                     <div className="column">

@@ -3,7 +3,9 @@ import Carousel from '../../components/Carousel';
 import {Input, FormBtn} from "../../components/NewAccount";
 import API from "../../utils/API";
 import "../../components/NewAccount/NewAccount.css";    
-import Results from '../../components/Results'
+import Results from '../../components/Results';
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 //################################################################################
 class Home extends Component {
@@ -106,6 +108,7 @@ class Home extends Component {
     render() {
         return (
             <div>
+                <Navbar />
                 <Carousel />
                 <div className="ui form" id="new-account-form">
                     <h4 className="ui dividing header" id="new-account-form-header">New Account Setup</h4>
@@ -163,6 +166,7 @@ class Home extends Component {
                     personality={this.state.personality}
                     ></Results>: null }
                 </div>
+                <Footer />
 
             </div>
         )

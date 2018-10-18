@@ -1,0 +1,36 @@
+.landing-page {
+    background-image: url("https://cdn.fodors.com/wp-content/uploads/2017/07/Surreal-Landscapes-Mono-Lake-1-1.jpg");
+    height: 1000px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.landing-page-container {
+    margin: auto;
+    margin-top: 150px;
+    width: 50%;
+    height: 500px;
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.landing-page-title {
+    font-size: 76px;
+    color: white;
+    margin-top: 100px;
+}
+
+.landing-page-text {
+    font-size: 24px;
+    color: white;
+    margin-top: 100px;
+    line-height: 1.6em;
+}
+
+#enter-button {
+    margin-top: 100px;
+    color: white;
+}
