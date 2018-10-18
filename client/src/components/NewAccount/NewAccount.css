@@ -1,19 +1,22 @@
 #new-account-form {
     width: 80%;
     margin: auto;
-    border: solid 2px rgb(159, 163, 165);
+    border: solid 2px white;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: white;
     margin-top: 60px;
     margin-bottom: 60px;
 }
 
 #new-account-form-header {
     font-size: 16px;
-    background-color: rgb(151, 154, 156);
-    color: white;
+    background-color: white;
+    color: grey;
     padding: 10px;
+}
+
+.ui.form .field>label {
+    color: white;
 }
 
 .field {
