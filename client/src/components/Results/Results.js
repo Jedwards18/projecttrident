@@ -1,143 +1,234 @@
 import React, { Component } from 'react';
-// import OutputContainer from "../../components/OutputContainer";
-import { PolarityConfidence } from "../../components/PolarityConfidence";
-import { TabExampleBasic } from "../../components/TabExampleBasic";
-import { PersonalityTraits } from "../../components/PersonalityTraits";
-import { PolarityAnalysis } from "../../components/PolarityAnalysis";
-import WordCloud from "../../components/WordCloud";
-import  "../../components/OutputContainer/OutputContainer.css";
-// import { PopupExampleBasic } from "../../components/NewAccount/";
-import { ModalModalExample } from "../../components/OutputContainer";
-import { List, ListItem } from "../../components/TwitterMentions";
 import  Chart  from "../../components/Chart";
-import {Table, TableItem } from "../../components/Table";
+import {Accordion, Container, Card, Grid, Header, Icon, Statistic, Table} from 'semantic-ui-react';
 
 class Results extends Component {
-    constructor(props) {
-        super(props);
-    };
-   
-    componentDidMount() {
-        this.handleClick();
-    }
+    state = { activeIndex: 0 }
 
-    handleClick() {
-    }
+    handleClick = (e, titleProps) => {
+        const { index } = titleProps;
+        const { activeIndex } = this.state;
+        const newIndex = activeIndex === index ? -1 : index;
+        this.setState({ activeIndex: newIndex });
+     }
+
+    renderIconSwitch () {
+        
+        switch (this.props.sentiment.polarity) {
+            case "positive":
+                return <div><Icon size='massive' color='green' name='thumbs up'/> <span>Positive</span></div>
+            case "neutral":
+                return <div><Icon size='massive' color='yellow' rotated='counterclockwise' name='thumbs up'/> <span>Neutral</span></div>;
+            case "negative":
+                return <div><Icon size='massive' color='red' name='thumbs down'/> <span>Negative</span></div>;
+        }
+    };
 
     render() {
-        return (
-            <div>
-                <div className="ui two column grid" id="output-container">
-                <div id="output-container-header">Results <br></br>Go forth and maximize your company's potential!</div>
-                <div className="row">
-                    <div className="column">
-                        <div id="personality-traits-results-grid">
-                            <div className="ui grid">
-                                <div className="eight wide column right aligned">
-                                    <div id="polarity-analysis-results-header">Personality Traits</div>
-                                </div>
-                                <div className="eight wide column">
-                                    <div className="ui mini button" data-tooltip="These results represent the primary personality traits of those who have used your service/product" position="top left">
-                                        More Info
-                                </div>
-                                </div>
-                            </div>
-                        <Chart personality={this.props.personality}></Chart>
-                            {/* {this.props.personality.length ? (
-                                <List>
-                                Personality Traits 
-                                {this.props.personality.map((trait, i) => (
-                                    <ListItem key={i}>
-                                    <em>{trait.trait}</em>
-                                    <ul>
-                                        <li>{trait.percentage}</li>
-                                    </ul>
-                                    </ListItem>
-                                ))}
-                            </List>
-                            ) : (
-                                <h3>No Results to Display</h3>
-                            )} */}
-                        </div>
-                    </div>
-                    <div className="column">
-                        <div id="polarity-analysis-results-grid">
-                            <div className="ui grid">
-                                <div className="eight wide column right aligned">
-                                    <div id="polarity-analysis-results-header">Polarity Analysis</div>
-                                </div>
-                                <div className="eight wide column">
-                                    <div className="ui mini button" data-tooltip="These results represent the polarity, and confidence, of your company based off the social media activity of your company" position="top left">
-                                        More Info
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="ui two column divided grid">
-                                <div className="row">
-                                    <div className="column">
-                                        <div id="polarity-result-grid">
-                                            <div id="polarity-result-header">Polarity</div>
-                                            <div id="polarity-result">
-                                                {this.props.sentiment.polarity}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="column">
-                                        <div id="polarity-confidence-result-grid">
-                                            <div id="polarity-confidence-result-header">Polarity Confidence</div>
-                                            <div id="polarity-confidence-result">
-                                                {this.props.sentiment.confidence}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="column">
-                        <div id="word-cloud-grid">
-                            <div id="word-cloud-header">Yelps</div>
-                            <div id="word-cloud-data">
-                            {this.props.yelps.length ? (
-                              <Table>
-                                {this.props.yelps.map((yelp, i) => (
-                                  <TableItem key={i}>
-                                        <td>{yelp}</td>
-                                  </TableItem>
-                                ))}
-                              </Table>
+        const { activeIndex } = this.state
+        
+    return (
+
+    <Container>
+      <div>
+        <Header as='h1'>Results</Header>   
+        <Grid stackable columns={5}>
+            <Grid.Column width={6}>
+            <Card fluid>
+                <Card.Header>Sentiment</Card.Header>
+                <Card.Meta>How do they feel about you?</Card.Meta>
+              <Card.Content>
+                <Statistic>
+                    <Statistic.Value>{(this.props.sentiment.confidence*100).toFixed(2)}% Certainty</Statistic.Value>
+                    <Statistic.Label>{this.renderIconSwitch(this.props)}</Statistic.Label>
+                </Statistic>
+              </Card.Content>
+            </Card>
+            </Grid.Column>
+
+            <Grid.Column width={10}>
+            <Card fluid>
+              <Card.Content>
+                <Card.Header>Personality Traits</Card.Header>
+                <Card.Meta>Learn those Bobs</Card.Meta>
+              </Card.Content>
+              <Card.Content>
+                  <Chart personality={this.props.personality}></Chart>
+              </Card.Content>
+              <Card.Content extra>
+                See Data Below
+              </Card.Content>
+            </Card>
+            </Grid.Column>
+
+            
+          
+            <Grid.Column width={6}>
+            <Card fluid>
+                <Card.Header>Recent Tweets</Card.Header>
+                <Card.Content>
+                    {this.props.tweets.length ? (
+                        <Table selectable celled>
+                            <Table.Body>
+                          {this.props.tweets.map((tweet, i) => (
+                            <Table.Row>
+                              <Table.Cell key={i}>
+                                  {tweet}
+                              </Table.Cell>
+                            </Table.Row>
+                          ))}
+                          </Table.Body>
+                        </Table>
+                        ) : (
+                          <h3>No Results to Display</h3>
+                        )}
+                </Card.Content>
+            </Card>
+            </Grid.Column>
+
+            <Grid.Column width={4}>               
+            <Card fluid>
+                <Card.Header>Recent Tweets</Card.Header>
+                <Card.Content>
+                    {this.props.yelps.length ? (
+                        <Table selectable celled>
+                            <Table.Body>
+                          {this.props.yelps.map((yelp, i) => (
+                            <Table.Row>
+                              <Table.Cell key={i}>
+                                  {yelp}
+                              </Table.Cell>
+                            </Table.Row>
+                          ))}
+                          </Table.Body>
+                        </Table>
+                        ) : (
+                          <h3>No Results to Display</h3>
+                        )}
+                </Card.Content>
+            </Card>
+            </Grid.Column> 
+
+            <Grid.Column width={6}>                
+            <Card fluid>
+                <Card.Header>Sub-traits of the Big 5 Personality Indicators</Card.Header>
+                <Card.Content>
+                    <Accordion exclusive={false} fluid styled>
+
+                        <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+                            <Icon name='dropdown' />
+                            Openness
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 0}>
+                            {this.props.personality[0] ? (
+                            <Table selectable celled>
+                                <Table.Body>
+                              {this.props.personality[0].children.map((trait, i) => (
+                                <Table.Row>
+                                  <Table.Cell key={i}>{trait.name}</Table.Cell>
+                                  <Table.Cell>{((trait.percentage*100).toFixed(1))}%</Table.Cell>
+                                </Table.Row>
+                              ))}
+                              </Table.Body>
+                            </Table>
                             ) : (
                               <h3>No Results to Display</h3>
                             )}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="column">
-                        <div id="data-table-grid">
-                            <div id="data-table-header">Tweets</div>
-                            <div id="data-table">
-                            {this.props.tweets.length ? (
-                              <Table>
-                                {this.props.tweets.map((tweet, i) => (
-                                  <TableItem key={i}>
-                                        <td>{tweet}</td>
-                                  </TableItem>
-                                ))}
-                              </Table>
+                        </Accordion.Content>
+                        
+                        <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
+                            <Icon name='dropdown' />
+                            Conscientiousness
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 1}>
+                            {this.props.personality[1] ? (
+                            <Table selectable celled>
+                                <Table.Body>
+                              {this.props.personality[1].children.map((trait, i) => (
+                                <Table.Row>
+                                  <Table.Cell key={i}>{trait.name}</Table.Cell>
+                                  <Table.Cell>{(trait.percentage*100).toFixed(1)}%</Table.Cell>
+                                </Table.Row>
+                              ))}
+                              </Table.Body>
+                            </Table>
                             ) : (
                               <h3>No Results to Display</h3>
                             )}
-                             
-                                    
-                                                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </Accordion.Content>
+
+                        <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleClick}>
+                            <Icon name='dropdown' />
+                            Extraversion
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 2}>
+                            {this.props.personality[2] ? (
+                            <Table selectable celled>
+                                <Table.Body>
+                              {this.props.personality[2].children.map((trait, i) => (
+                                <Table.Row>
+                                  <Table.Cell key={i}>{trait.name}</Table.Cell>
+                                  <Table.Cell>{(trait.percentage*100).toFixed(1)}%</Table.Cell>
+                                </Table.Row>
+                              ))}
+                              </Table.Body>
+                            </Table>
+                            ) : (
+                              <h3>No Results to Display</h3>
+                            )}
+                        </Accordion.Content>
+
+                        <Accordion.Title active={activeIndex === 3} index={3} onClick={this.handleClick}>
+                            <Icon name='dropdown' />
+                            Agreeableness
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 3}>
+                            {this.props.personality[3] ? (
+                            <Table selectable celled>
+                                <Table.Body>
+                              {this.props.personality[3].children.map((trait, i) => (
+                                <Table.Row>
+                                  <Table.Cell key={i}>{trait.name}</Table.Cell>
+                                  <Table.Cell>{(trait.percentage*100).toFixed(1)}%</Table.Cell>
+                                </Table.Row>
+                              ))}
+                              </Table.Body>
+                            </Table>
+                            ) : (
+                              <h3>No Results to Display</h3>
+                            )}
+                        </Accordion.Content>
+
+                        <Accordion.Title active={activeIndex === 4} index={4} onClick={this.handleClick}>
+                            <Icon name='dropdown' />
+                            Neurotocism
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndex === 4}>
+                            {this.props.personality[4] ? (
+                            <Table selectable celled>
+                                <Table.Body>
+                              {this.props.personality[4].children.map((trait, i) => (
+                                <Table.Row>
+                                  <Table.Cell key={i}>{trait.name}</Table.Cell>
+                                  <Table.Cell>{(trait.percentage*100).toFixed(1)}%</Table.Cell>
+                                </Table.Row>
+                              ))}
+                              </Table.Body>
+                            </Table>
+                            ) : (
+                              <h3>No Results to Display</h3>
+                            )}
+                        </Accordion.Content>
+                    </Accordion>
+                </Card.Content>
+            </Card>
+            </Grid.Column>
+            
+        </Grid> 
+      </div> 
+    </Container>  
+
+        
         )
     }
 };

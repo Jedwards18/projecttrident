@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./landingpage.css";
 import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // import { withRouter } from 'react-router-dom';
 // const background = "https://c.pxhere.com/photos/96/02/black_white_blackandwhite_bw_blanc_noir_blancetnoir_bn-388432.jpg!d"

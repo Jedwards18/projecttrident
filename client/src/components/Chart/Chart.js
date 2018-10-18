@@ -12,6 +12,13 @@ class Chart extends Component {
         this.highChartsRender();
     };
 
+    componentWillReceiveProps(nextProps) {
+        if((this.props.personality[0].percentage) !== (nextProps.personality[0].percentage)) 
+        {
+            this.highChartsRender();
+        }
+    }
+
     highChartsRender() {
         
         Highcharts.chart('container', {

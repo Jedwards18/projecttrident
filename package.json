@@ -35,6 +35,7 @@
     "react-scripts": "1.1.5",
     "react-tag-cloud": "^1.2.0",
     "react-wordcloud": "^0.0.1",
+    "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.82.5",
     "twitter": "^1.7.1",
     "watson-developer-cloud": "^3.12.0",

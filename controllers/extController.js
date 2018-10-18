@@ -93,6 +93,7 @@ module.exports = ext = {
             let tweetYelp = await Promise.all([ext.intTweets(req.params.query), ext.intYelps(req.params.term, req.params.location)]);
             tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
             textapi.sentiment({ text: tweetYelp, mode: 'document' }, (err, analysis) => {
+                console.log(analysis)
             res.json(analysis);
             });
         } catch (err) {
@@ -107,9 +108,9 @@ module.exports = ext = {
             let tweetYelp = await Promise.all([ext.intTweets(req.params.query), ext.intYelps(req.params.term, req.params.location)]);
             tweetYelp = tweetYelp[0].concat(tweetYelp[1]).toString();
             await personalityInsights.profile({ text: tweetYelp }, (err, personality) => { 
-                let pObj = personality.tree.children[0].children[0].children
-                    .map(x => { return {"trait": x.id, "percentage": x.percentage}});
-                res.json(pObj);
+                let big5 = personality.tree.children[0].children[0].children
+                    .map(x => { return {"trait": x.id, "percentage": x.percentage, "children": x.children}});
+                res.json(big5);
              })
         } catch (err){
             console.log(err)

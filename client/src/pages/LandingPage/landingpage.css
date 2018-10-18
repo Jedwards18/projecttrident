@@ -31,6 +31,10 @@
 }
 
 #enter-button {
-    margin-top: 100px;
+    margin-top: 80px;
+    color: white;
+}
+
+#enter-button a {
     color: white;
 }
