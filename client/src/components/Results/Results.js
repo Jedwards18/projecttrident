@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import  Chart  from "../../components/Chart";
 import {Accordion, Container, Card, Grid, Header, Icon, Statistic, Table} from 'semantic-ui-react';
-import { getPriority } from 'os';
 
 class Results extends Component {
     state = { activeIndex: 0 }
@@ -26,10 +25,13 @@ class Results extends Component {
 
    
     };
+    
+    
 
     render() {
         const { activeIndex } = this.state
-        
+
+    
     return (
 
     <Container >
